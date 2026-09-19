@@ -25,15 +25,15 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}[hidden]{
 .px.dim{color:var(--mute)}
 /* app bar */
 header{position:sticky;top:0;z-index:30;background:rgba(0,0,0,.97);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;gap:22px;height:60px}
+header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;height:60px}
 header .wm img{height:34px;display:block}
-header nav{display:flex;gap:4px;margin-left:8px}
+header nav{display:flex;gap:4px;justify-content:center}
 header nav a{padding:6px 10px;font-size:12.5px;color:var(--dim);border:1px solid transparent}
 header nav a:hover{color:var(--ink)}header nav a.on{color:var(--g1);border-color:var(--line2);background:rgba(34,197,94,.08)}
-header .clk{margin-left:auto;font-size:12px;color:var(--mute);white-space:nowrap}header .clk b{color:var(--g1);font-weight:500}
+header .clk{justify-self:end;font-size:12px;color:var(--mute);white-space:nowrap}header .clk b{color:var(--g1);font-weight:500}
 header .cta{border:1px solid var(--g2);background:rgba(34,197,94,.12);color:var(--g1);padding:7px 12px;font-size:12.5px;cursor:pointer;white-space:nowrap}
 header .cta:hover{background:var(--g2);color:#000}
-@media(max-width:900px){header nav{display:none}header .clk{font-size:11px}}
+@media(max-width:900px){header .wrap{grid-template-columns:1fr auto}header nav{display:none}header .clk{font-size:11px}}
 @media(max-width:560px){header .cta{display:none}}
 .mnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(0,0,0,.92);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom));justify-content:space-around}
 .mnav a{font-size:10px;color:var(--dim);padding:6px 8px;font-family:PS2P,monospace;text-transform:uppercase;letter-spacing:.02em}.mnav a.on{color:var(--g1)}
@@ -177,6 +177,29 @@ body{animation:flick 7s steps(1,end) infinite}
 .side .nums{margin-top:14px;grid-template-columns:1fr 1fr}
 .side .rules-mini{margin-top:14px;font-size:12px;color:var(--dim);border:1px solid var(--line);background:var(--panel);padding:10px 12px}.side .rules-mini div{padding:4px 0;border-bottom:1px solid #0d1a11}.side .rules-mini div:last-child{border:0}.side .rules-mini b{color:var(--g1);font-weight:500;margin-right:8px}
 @media(prefers-reduced-motion:reduce){body,.glitch:before,.glitch:after,#crt:after,.status i,.tile{animation:none}}
+
+/* hero v3: the bot's window IS the hero */
+#plan{min-height:0;display:block;padding:26px 0 40px}
+.hero3{text-align:center}
+.hero3 .wm{width:min(70vw,420px);display:block;margin:0 auto;filter:drop-shadow(0 0 26px rgba(60,230,120,.25))}
+.hero3 .cd{font-family:InterBlack,sans-serif;font-style:italic;font-weight:900;font-size:clamp(44px,7vw,84px);color:var(--ink);line-height:1;margin-top:10px;letter-spacing:-.03em;font-variant-numeric:tabular-nums;text-shadow:0 0 24px rgba(150,245,175,.22)}
+.hero3 .cdl{font-family:PS2P,monospace;font-size:9px;color:var(--mute);letter-spacing:.1em;margin-top:8px}
+.win{margin-top:18px;border:1px solid var(--line2);background:#020402;text-align:left;box-shadow:0 0 40px rgba(34,197,94,.08),inset 0 0 60px rgba(0,0,0,.6)}
+.win .bar{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--line);font-family:PS2P,monospace;font-size:8px;color:var(--mute);letter-spacing:.06em}
+.win .bar .dots{display:inline-flex;gap:5px}.win .bar .dots i{width:8px;height:8px;border-radius:50%;background:#1a2a1e;display:block}.win .bar .dots i:first-child{background:#3a1a1a}
+.win .bar .r{margin-left:auto;color:var(--g2)}
+.live2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media(max-width:860px){.live2{grid-template-columns:1fr}}
+.screen{padding:12px 14px;min-height:330px;font-size:13px;line-height:1.7;color:var(--dim);border-right:1px solid var(--line);white-space:pre;overflow:auto}
+@media(max-width:860px){.screen{border-right:0;border-bottom:1px solid var(--line);min-height:0}}
+.screen .row{display:grid;grid-template-columns:62px 90px 74px 1fr;gap:8px;animation:tin .3s both}.screen .row b{color:var(--ink);font-weight:500}.screen .row .sp{color:var(--g3);letter-spacing:1px}.screen .row.hi{background:rgba(34,197,94,.07);margin:0 -14px;padding:0 14px}
+.screen .hd{color:var(--mute);font-size:11px;margin-bottom:4px}
+.screen .cur:after{content:'█';animation:blink 1s steps(1,end) infinite;color:var(--g2)}
+.term{border:0;min-height:330px;max-height:330px;background:transparent;padding:12px 14px}
+.term .ln{grid-template-columns:66px 1fr}.term .ln.bot span{color:var(--dim)}.term .ln.bot b{color:var(--g1)}.term .ln.me span{color:var(--dim)}.term .ln.me span:before{content:'› ';color:var(--g3)}
+.win .pipe{margin:0;border-top:1px solid var(--line);gap:0}.win .step{border:0;border-right:1px solid var(--line);background:transparent;padding:8px 12px;box-shadow:none}.win .step:last-child{border-right:0}.win .step.on{background:rgba(34,197,94,.08);box-shadow:none}
+.win .ctl{margin:0;padding:10px 14px;border-top:1px solid var(--line);background:#040704}
+.win .dist{margin:0;border:0;border-top:1px solid var(--line)}
 @media print{body{background:#fff;color:#000}header,#bgc,.mnav,section:not(#statement),footer,.stm>div:first-child,.btns{display:none!important}.paper{box-shadow:none;border:0}section{padding:0}}
 </style>
 </head>
@@ -185,59 +208,45 @@ body{animation:flick 7s steps(1,end) infinite}
 <header>
   <div class="wrap">
     <a class="wm" href="#plan"><img src="/assets/wordmark-s.png" alt="401K"></a>
-    <nav id="nav"><a href="#plan">Plan</a><a href="#bot">Bot</a><a href="#ledger">Ledger</a><a href="#statement">Statement</a><a href="#rules">Rules</a><a href="docs.html">Docs</a><a id="xl" href="https://x.com/" target="_blank" rel="noopener">X</a></nav>
+    <nav id="nav"><a href="#plan">Bot</a><a href="#wallsec">Plan</a><a href="#ledger">Ledger</a><a href="#statement">Statement</a><a href="#rules">Rules</a><a href="docs.html">Docs</a><a id="xl" href="https://x.com/" target="_blank" rel="noopener">X</a></nav>
     <span class="clk" id="clk">—</span>
-    <button class="cta" id="ctaRun">Run a cycle</button>
   </div>
 </header>
-<div class="mnav" id="mnav"><a href="#plan">Plan</a><a href="#bot">Bot</a><a href="#ledger">Ledger</a><a href="#statement">Stmt</a><a href="#rules">Rules</a><a href="docs.html">Docs</a></div>
+<div class="mnav" id="mnav"><a href="#plan">Bot</a><a href="#wallsec">Plan</a><a href="#ledger">Ledger</a><a href="#statement">Stmt</a><a href="#rules">Rules</a><a href="docs.html">Docs</a></div>
 
 <section id="plan">
-  <div class="wrap hero2">
+  <div class="wrap hero3">
     <span class="glitch" style="--gimg:url(/assets/wordmark.png)"><img class="wm" src="/assets/wordmark.png" alt="401K"></span>
-    <div class="line">THE STOCKS ALREADY IN YOUR 401K · EVERY 30 MINUTES · TO EVERY HOLDER</div>
-    <div class="cd" id="cd">--:--</div>
-    <div class="cdl">NEXT CYCLE · <span id="cdSub">—</span></div>
-    <div class="strip" id="strip"><span class="status"><i></i>BOT AWAKE</span><span>$SPY <b id="spyPx">—</b> <span id="spyCh"></span></span><span>ytd <b class="up">+12.43%</b></span><span>top ten <b>37.79%</b></span><span id="asof">—</span></div>
-    <div class="btns"><button class="btn pri" id="goCycle">Watch it run</button><a class="btn" href="docs.html">How it works</a></div>
+    <span id="cd" hidden>--:--</span><span id="cdSub" hidden>—</span>
+    <div class="win">
+      <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>401K — BOT</span><span class="status"><i></i>AWAKE</span><span class="r" id="src">READING…</span></div>
+      <div class="live2">
+        <div class="screen" id="tape"><div class="hd">the tape</div><span class="cur"></span></div>
+        <div class="term" id="term"><div class="idle" id="idle">idle. watching the tape. next cycle in <b>--:--</b></div></div>
+      </div>
+      <div class="pipe" id="pipe">
+        <div class="step" data-s="0"><div class="n">01</div><div class="h">CLAIM</div></div>
+        <div class="step" data-s="1"><div class="n">02</div><div class="h">QUOTE</div></div>
+        <div class="step" data-s="2"><div class="n">03</div><div class="h">BUY</div></div>
+        <div class="step" data-s="3"><div class="n">04</div><div class="h">SEND</div></div>
+      </div>
+      <div class="ctl">
+        <label>fees in (USDG) <input id="fees" inputmode="decimal" placeholder="e.g. 250"></label>
+        <label>your share of supply <input id="pct" inputmode="decimal" value="0.5" placeholder="%"></label>
+        <button class="btn pri" id="run">Run <span class="tag" style="margin-left:6px;color:#000;border-color:#000">rehearsal</span></button>
+        <button class="btn" id="stop" disabled>Stop</button>
+        <span class="k2" style="margin-left:auto">CYCLES ON CHAIN <b id="nCyc" style="color:var(--ink)">0</b> · REHEARSED <b id="nReh" style="color:var(--ink)">0</b></span>
+      </div>
+      <div class="dist" id="dist" hidden></div>
+    </div>
   </div>
 </section>
 
 <section id="wallsec" class="wall">
   <div class="wrap">
-    <div class="sec-h"><h2 class="disp">The plan</h2><span class="k2">TEN NAMES · INDEX WEIGHTS · <span id="src">reading prices…</span></span></div>
+    <div class="sec-h"><h2 class="disp">The plan</h2><span class="k2">TEN NAMES · INDEX WEIGHTS · <span id="src2">—</span></span></div>
     <div class="tm" id="tm"></div>
     <div class="drawer" id="drawer" hidden></div>
-  </div>
-</section>
-
-<section id="bot">
-  <div class="wrap">
-    <div class="sec-h"><h2 class="disp">The bot</h2><span class="k2">ONE KEY · FOUR RULES · <span class="cur">NEVER SELLS</span></span></div>
-    <div class="bot2">
-      <div>
-        <div class="pipe" id="pipe">
-          <div class="step" data-s="0"><div class="n">01</div><div class="h">CLAIM</div></div>
-          <div class="step" data-s="1"><div class="n">02</div><div class="h">QUOTE</div></div>
-          <div class="step" data-s="2"><div class="n">03</div><div class="h">BUY</div></div>
-          <div class="step" data-s="3"><div class="n">04</div><div class="h">SEND</div></div>
-        </div>
-        <div class="term" id="term"><div class="idle" id="idle">idle. watching the tape. next cycle in <b>--:--</b></div></div>
-        <div class="ctl">
-          <label>fees in (USDG) <input id="fees" inputmode="decimal" placeholder="e.g. 250"></label>
-          <label>your share of supply <input id="pct" inputmode="decimal" value="0.5" placeholder="%"></label>
-          <button class="btn pri" id="run">Run <span class="tag" style="margin-left:6px;color:#000;border-color:#000">rehearsal</span></button>
-          <button class="btn" id="stop" disabled>Stop</button>
-        </div>
-        <div class="dist" id="dist" hidden></div>
-      </div>
-      <div class="side">
-        <div class="ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="#0d1f14" stroke-width="3"/><circle id="arc" cx="50" cy="50" r="46" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" style="filter:drop-shadow(0 0 6px rgba(34,197,94,.7))"/></svg>
-          <div class="t"><div class="cd" id="cd2">--:--</div><div class="lab">NEXT CYCLE</div><div class="sub" id="cdSub2">—</div></div></div>
-        <div class="nums"><div><span class="px dim">cycles</span><span class="v" id="nCyc">0</span><small>on chain</small></div><div><span class="px dim">rehearsed</span><span class="v" id="nReh">0</span><small>this browser</small></div></div>
-        <div class="rules-mini"><div><b>01</b>never sells</div><div><b>02</b>buys only the ten, in index weights</div><div><b>03</b>logs before it buys</div><div><b>04</b>keeps nothing · balance 0 between cycles</div></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -255,7 +264,7 @@ body{animation:flick 7s steps(1,end) infinite}
     <div class="stm">
       <div>
         <div class="ctl"><label>your share of supply <input id="pct2" inputmode="decimal" value="0.5" placeholder="%"></label><button class="btn" id="print">Print</button></div>
-        <p class="src">Written from the cycles above. When the bot is live it reads your wallet's receipts instead.</p>
+        
       </div>
       <div class="paper" id="paper"></div>
     </div>
@@ -288,7 +297,7 @@ body{animation:flick 7s steps(1,end) infinite}
   </div>
 </section>
 
-<footer><div class="wrap"><img src="/assets/wordmark-s.png" alt=""><span>every 30 minutes</span><a href="docs.html">docs</a><a id="xl2" href="https://x.com/" target="_blank" rel="noopener">x</a></div></footer>
+
 
 <script>
 var CONFIG={x:'',ca:'',bot:''};
@@ -318,8 +327,7 @@ function utc(d){d=d||new Date();return String(d.getUTCHours()).padStart(2,'0')+'
 // ---------- quotes ----------
 var Q=null,VIA='',ASOF='';
 function loadQuotes(){return fetch('/api/quote').then(function(r){return r.json()}).then(function(j){Q=j.quotes;VIA=j.via;ASOF=j.live?'live · '+new Date((j.t||Date.now()/1000)*1000).toISOString().slice(0,16).replace('T',' ')+'z':'as of 2026-09-18 close';
-  $('#src').innerHTML=(j.live?'LIVE VIA YAHOO':'SNAPSHOT '+esc(j.asof_weights))+' · '+j.live+'/'+j.of+' LIVE';var s=Q.SPY;$('#spyPx').textContent=s.price.toFixed(2);
-  if(s.prev){var c=(s.price/s.prev-1)*100;$('#spyCh').innerHTML='<span class="'+(c>=0?'up':'dn')+'">'+(c>=0?'+':'')+c.toFixed(2)+'%</span>'}$('#asof').textContent=ASOF;treemap();return j}).catch(function(){$('#src').textContent='PRICES UNAVAILABLE';return null})}
+  var lab=(j.live?'LIVE · YAHOO':'SNAPSHOT '+esc(j.asof_weights))+' · '+j.live+'/'+j.of;$('#src').textContent=lab;$('#src2').textContent=lab;treemap();tapeAll();return j}).catch(function(){$('#src').textContent='NO PRICES';return null})}
 function chg(q){if(!q||!q.prev)return null;return (q.price/q.prev-1)*100}
 // ---------- treemap (squarify) ----------
 function squarify(items,x,y,w,h){var total=items.reduce(function(a,i){return a+i.v},0);var its=items.slice().sort(function(a,b){return b.v-a.v}).map(function(i){return {i:i,v:i.v/total*w*h}});
@@ -341,11 +349,11 @@ function drawer(){var d=$('#drawer');if(!SELT||!Q||!Q[SELT]){d.hidden=true;retur
 addEventListener('resize',function(){clearTimeout(window.__tmr);window.__tmr=setTimeout(treemap,120)});
 // ---------- clock + the 30-minute ring ----------
 function nextCycle(){var d=new Date();var m=d.getUTCMinutes(),s=d.getUTCSeconds();var left=(m<30?30-m:60-m)*60-s;return left}
-function clock(){var left=nextCycle();var mm=Math.floor(left/60),ss=left%60;var t=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');$('#cd').textContent=t;$('#cd2').textContent=t;$('#arc').style.strokeDashoffset=289*(left/1800);var d=new Date();var at=new Date(d.getTime()+left*1000);var atS=String(at.getUTCHours()).padStart(2,'0')+':'+String(at.getUTCMinutes()).padStart(2,'0')+'z';
-  $('#cdSub').textContent=atS+' · '+utc(d);$('#cdSub2').textContent='at '+atS;var idle=$('#idle');if(idle)idle.innerHTML='idle. watching the tape. next cycle in <b>'+t+'</b>';if(left===1800||left===3600||left===0){if(!RUN)tline('<i>bot:</i> cycle window '+atS+'. fees on chain: <b>none</b>. no chain yet. <b>carried.</b>','bot')}$('#clk').innerHTML=utc(d).replace('z','')+' UTC · next cycle in <b>'+t+'</b>'}
+function clock(){var left=nextCycle();var mm=Math.floor(left/60),ss=left%60;var t=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');$('#cd').textContent=t;var d=new Date();var at=new Date(d.getTime()+left*1000);var atS=String(at.getUTCHours()).padStart(2,'0')+':'+String(at.getUTCMinutes()).padStart(2,'0')+'z';
+  $('#cdSub').textContent=atS+' · '+utc(d);var idle=$('#idle');if(idle)idle.innerHTML='idle. watching the tape. next cycle in <b>'+t+'</b>';if(left===1800){if(!RUN)tline('cycle window. fees on chain: <b>none</b>. no chain yet. <b>carried.</b>','bot')}$('#clk').innerHTML=utc(d).replace('z','')+' UTC · next cycle in <b>'+t+'</b>'}
 // ---------- rehearsal cycles ----------
 var RUN=null;var C=[];function save(){try{localStorage.setItem(KEY,JSON.stringify(C))}catch(e){}}function load(){try{C=JSON.parse(localStorage.getItem(KEY)||'[]')||[]}catch(e){C=[]}}load();
-function tline(html,cls){var box=$('#term');var id=box.querySelector('#idle');if(id)id.remove();var el=document.createElement('div');el.className='ln'+(cls?' '+cls:'');el.innerHTML='<time>'+utc()+'</time><span>'+html+'</span>';box.appendChild(el);while(box.children.length>80)box.removeChild(box.firstChild);box.scrollTop=box.scrollHeight;return el}
+function tline(html,cls){var box=$('#term');var id=box.querySelector('#idle');if(id)id.remove();var el=document.createElement('div');el.className='ln'+(cls?' '+cls:'');el.innerHTML='<time>'+utc()+'</time><span>'+html+'</span>';box.appendChild(el);while(box.children.length>40)box.removeChild(box.firstChild);box.scrollTop=box.scrollHeight;return el}
 function step(i){$$('#pipe .step').forEach(function(s,k){s.classList.toggle('on',k===i);s.classList.toggle('done',k<i)})}
 function wait(ms){return new Promise(function(r){var t=setTimeout(r,ms);RUN&&RUN.timers.push(t)})}
 function runCycle(fees,pct){if(RUN)return;if(!(fees>0)){tline('<i>how much came in? type rehearsal fees in USDG and run.</i>');$('#fees').focus();return}if(fees>1e7){tline('<i>no cycle is that big. try under 10,000,000.</i>');return}if(!Q){tline('<i>no prices yet. wait a second.</i>');return}
@@ -353,24 +361,24 @@ function runCycle(fees,pct){if(RUN)return;if(!(fees>0)){tline('<i>how much came 
   var cyc={id:id,t:t0/1000,fees:fees,pct:pct,buys:{},gas:null,tx:{},holders:1+Math.floor(fees/7)+11};
   (async function(){
     step(0);tline('<b>cycle '+id+'</b> · rehearsal · '+utc()+' <span class="tag">REHEARSAL</span>');
-    tline('<i>bot:</i> claiming fees since the last cycle…','bot');await wait(600);
+    tline('claiming what came in since the last cycle.','bot');await wait(600);
     cyc.tx.claim=txh('claim'+id+fees);tline('claimed <b>'+fmt(fees)+'</b> USDG · <i>'+cyc.tx.claim.slice(0,18)+'… (rehearsal)</i>');await wait(500);
-    var minSwap=2.5;if(fees<minSwap*10){tline('<i>bot:</i> '+fmt(fees)+' is under ten swaps worth of gas. one buy of <b>$SPY</b> instead, so nothing is lost to fees.','bot');await wait(600)}
-    step(1);tline('<i>bot:</i> quoting the ten. index weights as of 2026-09-18, top ten = '+WSUM.toFixed(2)+'% of $SPY, scaled to 100% of this cycle.','bot');await wait(500);
+    var minSwap=2.5;if(fees<minSwap*10){tline(fmt(fees)+' is under ten swaps of gas. one buy of <b>$SPY</b> instead. nothing lost.','bot');await wait(600)}
+    step(1);tline('quoting the ten. index weights, '+WSUM.toFixed(2)+'% of $SPY, scaled to this cycle.','bot');await wait(500);
     var list=fees<minSwap*10?['SPY']:TEN;
     for(var k=0;k<list.length;k++){var t=list[k],q=Q[t];var share=t==='SPY'?1:WEIGHTS[t]/WSUM;var usd=fees*share;var guard=q.price*1.005;var shares=usd/q.price;cyc.buys[t]={usd:usd,px:q.price,sh:shares,w:t==='SPY'?100:WEIGHTS[t]};
       tline('<span class="row"><span>'+t+'</span><span>'+(share*100).toFixed(2)+'%</span><span>quote '+q.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' · guard '+guard.toFixed(2)+' · '+(q.live?'live':'snapshot')+'</span><span>'+fmt(usd)+'</span></span>');await wait(160)}
-    step(2);tline('<i>bot:</i> dry run passed on '+list.length+' route'+(list.length>1?'s':'')+'. buying.','bot');await wait(700);
+    step(2);tline('dry run passed on '+list.length+' route'+(list.length>1?'s':'')+'. buying.','bot');await wait(700);
     for(var k=0;k<list.length;k++){var t=list[k],b=cyc.buys[t];cyc.tx[t]=txh('buy'+id+t+fees);tline('bought <b>'+sh(b.sh)+' '+t+'</b> at '+b.px.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' · <i>'+cyc.tx[t].slice(0,18)+'…</i>');await wait(120)}
-    step(3);tline('<i>bot:</i> sending every share to every holder at block, pro rata. you hold '+pct+'% of supply.','bot');await wait(700);
+    step(3);tline('sending every share to every holder at block. you hold '+pct+'%. i keep nothing.','bot');await wait(700);
     cyc.tx.send=txh('send'+id+fees);tline('sent to <b>'+cyc.holders.toLocaleString()+' wallets</b> · <i>'+cyc.tx.send.slice(0,18)+'… (rehearsal)</i>');
-    tline('<i>bot:</i> gas <b>—</b> (measured on chain, not invented here). balance after cycle: <b>0</b>. next cycle '+$('#cdSub2').textContent+'.','bot');
+    tline('gas <b>—</b> (measured on chain, not here). balance after cycle: <b>0</b>. next cycle at '+$('#cdSub').textContent.split(' · ')[0]+'.','bot');
     $$('#pipe .step').forEach(function(s){s.classList.add('done');s.classList.remove('on')});
     C.push(cyc);save();dist(cyc);ledger();statement();$('#nReh').textContent=C.length;RUN=null;$('#run').disabled=false;$('#stop').disabled=true})()}
 $('#run').onclick=function(){runCycle(parseFloat($('#fees').value),parseFloat($('#pct').value)||0)};
 $('#fees').addEventListener('keydown',function(e){if(e.key==='Enter')$('#run').click()});
 $('#stop').onclick=function(){if(!RUN)return;RUN.timers.forEach(clearTimeout);RUN=null;$('#run').disabled=false;$('#stop').disabled=true;tline('<i>stopped. nothing was recorded.</i>');step(-1)};
-$('#ctaRun').onclick=$('#goCycle').onclick=function(){$('#bot').scrollIntoView({behavior:'smooth'});setTimeout(function(){$('#fees').focus()},600)};
+
 $('#pct').addEventListener('input',function(){$('#pct2').value=this.value;statement()});$('#pct2').addEventListener('input',function(){$('#pct').value=this.value;statement()});
 function dist(c){var d=$('#dist');d.hidden=false;var you=c.pct/100;var rows=Object.keys(c.buys).map(function(t){var b=c.buys[t];return '<tr><td>'+t+'</td><td class="r">'+sh(b.sh)+'</td><td class="r">'+sh(b.sh*you)+'</td><td class="r">'+sh(b.sh*(1-you))+'</td></tr>'}).join('');
   d.innerHTML='<table><thead><tr><th>stock</th><th style="text-align:right">bought</th><th style="text-align:right">you · '+c.pct+'%</th><th style="text-align:right">everyone else · '+(c.holders-1).toLocaleString()+' wallets</th></tr></thead><tbody>'+rows+'</tbody></table>'}
@@ -383,16 +391,27 @@ function statement(){var p=$('#paper');var pct=parseFloat($('#pct2').value)||0,y
   var d=new Date();var per=C.length?new Date(C[0].t*1000).toISOString().slice(0,10)+' → '+new Date(C[C.length-1].t*1000).toISOString().slice(0,10):'—';
   p.innerHTML='<div class="stamp">REHEARSAL</div><div class="ph"><img src="/assets/wordmark-s.png" alt="401K"><div class="r">statement of stock received<br>'+d.toISOString().slice(0,10)+' · prepared by the bot</div></div>'+
    '<div class="kv"><i>account</i><span>you · '+pct+'% of '+SUPPLY.toLocaleString()+' $401K</span><i>period</i><span>'+per+'</span><i>cycles</i><span>'+C.length+' rehearsal cycle'+(C.length===1?'':'s')+'</span><i>fees in, all holders</i><span>'+fmt(fees)+'</span><i>your contribution</i><span>'+fmt(fees*you)+' <span style="color:#666">(your share of the fees the bot spent)</span></span><i>vested</i><span>100% · there is no vesting; what lands is yours</span></div>'+
-   '<table><thead><tr><th>stock</th><th>name</th><th class="r">shares received</th><th class="r">price now</th><th class="r">value</th></tr></thead><tbody>'+(rows||'<tr><td colspan="5" style="color:#888;padding:14px 4px">nothing yet. run a cycle above and this fills in.</td></tr>')+'</tbody><tfoot><tr><td colspan="4">total value at today\'s prices</td><td class="r">'+fmt(val)+'</td></tr></tfoot></table>'+
-   '<div class="foot">This is a rehearsal statement produced in your browser from cycles you ran with fees you typed. No stock was bought and nothing was sent. When the bot is live, this page reads your wallet\'s receipts from the ledger, and every line carries its transaction hash. Prices '+(Q&&Q.NVDA&&Q.NVDA.live?'live via Yahoo Finance':'as of the 2026-09-18 close')+'.</div>'}
+   '<table><thead><tr><th>stock</th><th>name</th><th class="r">shares received</th><th class="r">price now</th><th class="r">value</th></tr></thead><tbody>'+(rows||'<tr><td colspan="5" style="color:#888;padding:14px 4px">nothing yet. run a cycle above and this fills in.</td></tr>')+'</tbody><tfoot><tr><td colspan="4">total value at today\'s prices</td><td class="r">'+fmt(val)+'</td></tr></tfoot></table>'
+}
 $('#print').onclick=function(){window.print()};
+// ---------- the tape: the bot's screen. live rows, one ticker at a time, forever ----------
+var TI=0;
+function bars(v){if(!v||v.length<2)return '';var lo=Math.min.apply(null,v),hi=Math.max.apply(null,v),rg=(hi-lo)||1;var ch='▁▂▃▄▅▆▇';var step=Math.max(1,Math.floor(v.length/16));var o='';for(var i=0;i<v.length;i+=step)o+=ch[Math.min(6,Math.floor((v[i]-lo)/rg*6.99))];return o}
+function tapeRow(t,hi){var q=Q[t];if(!q)return '';var c=chg(q);return '<div class="row'+(hi?' hi':'')+'"><b>'+t+'</b><span>'+q.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'</span><span class="'+(c==null?'':c>=0?'up':'dn')+'">'+(c==null?'—':(c>=0?'+':'')+c.toFixed(2)+'%')+'</span><span class="sp">'+bars(q.closes)+'</span></div>'}
+function tapeAll(){var el=$('#tape');if(!Q)return;el.innerHTML='<div class="hd">the tape · '+(Q.NVDA&&Q.NVDA.live?'live':'snapshot 2026-09-18')+'</div>'+TEN.map(function(t,i){return tapeRow(t,i===TI%TEN.length)}).join('')+'<span class="cur"></span>'}
+function tick(){if(!Q)return;TI++;tapeAll();var t=TEN[TI%TEN.length],q=Q[t],c=chg(q);
+  var lines=['watching '+t+'. '+q.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+(c==null?'':' · '+(c>=0?'+':'')+c.toFixed(2)+'%')+'. noted.','no fees on chain yet. nothing to claim. i wait.','i do not sell. i cannot sell.',t+' is '+WEIGHTS[t].toFixed(2)+'% of the index. '+(WEIGHTS[t]/WSUM*100).toFixed(1)+'% of every cycle.','next cycle in '+$('#cd').textContent+'. i will be here.','balance: 0. it is always 0 between cycles.','the dev cannot reach me. neither can you.','one key. four rules. no exceptions.','i buy what is already in your 401k. nothing else.','every holder, pro rata, at the block. no claim.'];
+  if(!RUN){var i=TI%3===0?0:1+Math.floor(Math.random()*(lines.length-1));var el=tline(lines[i],'me');if(el)el.classList.add('me')}}
+setInterval(tick,4500);
+(function boot(){var L=['awake.','one key. four rules.','reading the tape.','ten names. index weights. '+WSUM.toFixed(2)+'% of $SPY.','no fees on chain. nothing to claim. i wait.'];var i=0;(function n(){if(i<L.length){var el=tline(L[i++],'me');setTimeout(n,i===1?300:700)}})()})();
+setInterval(function(){if(!RUN)loadQuotes()},60000);
 // ---------- boot ----------
 setInterval(clock,1000);clock();
 loadQuotes().then(function(){ledger();statement()});ledger();statement();
 (function(){var els=$$('.rv');function sweep(){els.forEach(function(e){if(e.getBoundingClientRect().top<innerHeight)e.classList.add('vis')})}addEventListener('scroll',sweep,{passive:true});sweep();
 var links=$$('#nav a, #mnav a').filter(function(a){return a.getAttribute('href').charAt(0)==='#'});
 function spy(){var y=scrollY+120,cur=null;$$('section').forEach(function(s){if(s.offsetTop<=y)cur=s.id});links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur)})}addEventListener('scroll',spy,{passive:true});spy()})();
-addEventListener('keydown',function(e){var tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea')return;if(e.key==='r'){$('#ctaRun').click()}else if(e.key==='Escape'&&SELT){SELT=null;treemap();drawer()}});
+addEventListener('keydown',function(e){var tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea')return;if(e.key==='r'){$('#plan').scrollIntoView({behavior:'smooth'});setTimeout(function(){$('#fees').focus()},500)}else if(e.key==='Escape'&&SELT){SELT=null;treemap();drawer()}});
 </script>
 </body>
 </html>

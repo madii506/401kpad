@@ -24,15 +24,15 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}[hidden]{
 .px.dim{color:var(--mute)}
 /* app bar */
 header{position:sticky;top:0;z-index:30;background:rgba(0,0,0,.97);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;gap:22px;height:60px}
+header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;height:60px}
 header .wm img{height:34px;display:block}
-header nav{display:flex;gap:4px;margin-left:8px}
+header nav{display:flex;gap:4px;justify-content:center}
 header nav a{padding:6px 10px;font-size:12.5px;color:var(--dim);border:1px solid transparent}
 header nav a:hover{color:var(--ink)}header nav a.on{color:var(--g1);border-color:var(--line2);background:rgba(34,197,94,.08)}
-header .clk{margin-left:auto;font-size:12px;color:var(--mute);white-space:nowrap}header .clk b{color:var(--g1);font-weight:500}
+header .clk{justify-self:end;font-size:12px;color:var(--mute);white-space:nowrap}header .clk b{color:var(--g1);font-weight:500}
 header .cta{border:1px solid var(--g2);background:rgba(34,197,94,.12);color:var(--g1);padding:7px 12px;font-size:12.5px;cursor:pointer;white-space:nowrap}
 header .cta:hover{background:var(--g2);color:#000}
-@media(max-width:900px){header nav{display:none}header .clk{font-size:11px}}
+@media(max-width:900px){header .wrap{grid-template-columns:1fr auto}header nav{display:none}header .clk{font-size:11px}}
 @media(max-width:560px){header .cta{display:none}}
 .mnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(0,0,0,.92);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom));justify-content:space-around}
 .mnav a{font-size:10px;color:var(--dim);padding:6px 8px;font-family:PS2P,monospace;text-transform:uppercase;letter-spacing:.02em}.mnav a.on{color:var(--g1)}
@@ -176,6 +176,29 @@ body{animation:flick 7s steps(1,end) infinite}
 .side .nums{margin-top:14px;grid-template-columns:1fr 1fr}
 .side .rules-mini{margin-top:14px;font-size:12px;color:var(--dim);border:1px solid var(--line);background:var(--panel);padding:10px 12px}.side .rules-mini div{padding:4px 0;border-bottom:1px solid #0d1a11}.side .rules-mini div:last-child{border:0}.side .rules-mini b{color:var(--g1);font-weight:500;margin-right:8px}
 @media(prefers-reduced-motion:reduce){body,.glitch:before,.glitch:after,#crt:after,.status i,.tile{animation:none}}
+
+/* hero v3: the bot's window IS the hero */
+#plan{min-height:0;display:block;padding:26px 0 40px}
+.hero3{text-align:center}
+.hero3 .wm{width:min(70vw,420px);display:block;margin:0 auto;filter:drop-shadow(0 0 26px rgba(60,230,120,.25))}
+.hero3 .cd{font-family:InterBlack,sans-serif;font-style:italic;font-weight:900;font-size:clamp(44px,7vw,84px);color:var(--ink);line-height:1;margin-top:10px;letter-spacing:-.03em;font-variant-numeric:tabular-nums;text-shadow:0 0 24px rgba(150,245,175,.22)}
+.hero3 .cdl{font-family:PS2P,monospace;font-size:9px;color:var(--mute);letter-spacing:.1em;margin-top:8px}
+.win{margin-top:26px;border:1px solid var(--line2);background:#020402;text-align:left;box-shadow:0 0 40px rgba(34,197,94,.08),inset 0 0 60px rgba(0,0,0,.6)}
+.win .bar{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--line);font-family:PS2P,monospace;font-size:8px;color:var(--mute);letter-spacing:.06em}
+.win .bar .dots{display:inline-flex;gap:5px}.win .bar .dots i{width:8px;height:8px;border-radius:50%;background:#1a2a1e;display:block}.win .bar .dots i:first-child{background:#3a1a1a}
+.win .bar .r{margin-left:auto;color:var(--g2)}
+.live2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media(max-width:860px){.live2{grid-template-columns:1fr}}
+.screen{padding:12px 14px;min-height:330px;font-size:13px;line-height:1.7;color:var(--dim);border-right:1px solid var(--line);white-space:pre;overflow:auto}
+@media(max-width:860px){.screen{border-right:0;border-bottom:1px solid var(--line);min-height:0}}
+.screen .row{display:grid;grid-template-columns:62px 90px 74px 1fr;gap:8px;animation:tin .3s both}.screen .row b{color:var(--ink);font-weight:500}.screen .row .sp{color:var(--g3);letter-spacing:1px}.screen .row.hi{background:rgba(34,197,94,.07);margin:0 -14px;padding:0 14px}
+.screen .hd{color:var(--mute);font-size:11px;margin-bottom:4px}
+.screen .cur:after{content:'█';animation:blink 1s steps(1,end) infinite;color:var(--g2)}
+.term{border:0;min-height:330px;max-height:330px;background:transparent;padding:12px 14px}
+.term .ln{grid-template-columns:52px 1fr}.term .ln.bot span{color:var(--dim)}.term .ln.bot b{color:var(--g1)}.term .ln.me span{color:var(--mute);font-style:italic}
+.win .pipe{margin:0;border-top:1px solid var(--line);gap:0}.win .step{border:0;border-right:1px solid var(--line);background:transparent;padding:8px 12px;box-shadow:none}.win .step:last-child{border-right:0}.win .step.on{background:rgba(34,197,94,.08);box-shadow:none}
+.win .ctl{margin:0;padding:10px 14px;border-top:1px solid var(--line);background:#040704}
+.win .dist{margin:0;border:0;border-top:1px solid var(--line)}
 @media print{body{background:#fff;color:#000}header,#bgc,.mnav,section:not(#statement),footer,.stm>div:first-child,.btns{display:none!important}.paper{box-shadow:none;border:0}section{padding:0}}
 </style>
 <style>
@@ -194,12 +217,11 @@ body{animation:flick 7s steps(1,end) infinite}
 <header>
   <div class="wrap">
     <a class="wm" href="/"><img src="/assets/wordmark-s.png" alt="401K"></a>
-    <nav id="nav"><a href="/#plan">Plan</a><a href="/#bot">Bot</a><a href="/#ledger">Ledger</a><a href="/#statement">Statement</a><a href="/#rules">Rules</a><a href="docs.html" class="on">Docs</a><a href="https://x.com/" target="_blank" rel="noopener">X</a></nav>
+    <nav id="nav"><a href="/#plan">Bot</a><a href="/#wallsec">Plan</a><a href="/#ledger">Ledger</a><a href="/#statement">Statement</a><a href="/#rules">Rules</a><a href="docs.html" class="on">Docs</a><a href="https://x.com/" target="_blank" rel="noopener">X</a></nav>
     <span class="clk" id="clk">—</span>
-    <a class="cta" href="/#bot" style="text-decoration:none">Run a rehearsal cycle</a>
   </div>
 </header>
-<div class="mnav"><a href="/#plan">Plan</a><a href="/#bot">Bot</a><a href="/#ledger">Ledger</a><a href="/#statement">Stmt</a><a href="/#rules">Rules</a><a href="docs.html" class="on">Docs</a></div>
+<div class="mnav"><a href="/#plan">Bot</a><a href="/#wallsec">Plan</a><a href="/#ledger">Ledger</a><a href="/#statement">Stmt</a><a href="/#rules">Rules</a><a href="docs.html" class="on">Docs</a></div>
 <div class="wrap doc">
 <div class="toc" id="toc"></div>
 <div id="body">
@@ -243,7 +265,6 @@ body{animation:flick 7s steps(1,end) infinite}
 <h3>What if a cycle is tiny?</h3><p>It carries. The log says "carried" and the next cycle is bigger. Nothing is lost between cycles.</p>
 </div>
 </div>
-<footer><div class="wrap"><img src="/assets/wordmark-s.png" alt=""><span>the stocks already in your 401k · every 30 minutes</span><a href="/">home</a></div></footer>
 <script>
 var $=function(s){return document.querySelector(s)};
 function utc(d){d=d||new Date();return String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0')+':'+String(d.getUTCSeconds()).padStart(2,'0')}
